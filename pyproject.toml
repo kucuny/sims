@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "sims"
+version = "0.0.0"
+package-mode = false
+description = "sims (Self Inventory Management System)"
+authors = ["Kookheon Kwon <kucuny@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1"
+django-environ = "^0.11.2"
+python-decouple = "^3.8"
+django-ninja = "^1.3.0"
+django-extensions = "^3.2.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
