@@ -1,0 +1,8 @@
+volumes:
+  data: {}
+
+services:
+  cache:
+    image: redis:6.2-alpine
+    volumes:
+      - data:/data:rw

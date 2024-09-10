@@ -1,0 +1,4 @@
+include:
+  - path:
+      - deployment/local/compose.postgresql.yaml
+      - deployment/local/compose.redis.yaml
