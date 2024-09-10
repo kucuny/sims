@@ -6,6 +6,17 @@ description = "sims (Self Inventory Management System)"
 authors = ["Kookheon Kwon <kucuny@gmail.com>"]
 readme = "README.md"
 
+[tool.isort]
+py_version = 312
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+fix = true
+
+[tool.ruff.format]
+quote-style = "single"
+
 [tool.poetry.dependencies]
 python = "^3.12"
 django = "^5.1"
