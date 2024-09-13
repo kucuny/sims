@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from decouple import config
+from environ import Env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -57,13 +58,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': config('DJANGO_DATABASE_DEFAULT', default='psql://sims:sims@db/sims', cast=Env.db_url_config),
 }
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CACHES = {
+    'default': config('DJANGO_CACHE_DEFAULT', default='redis://cache/0', cast=Env.cache_url_config),
+    'auth': config('DJANGO_CACHE_AUTH', default='redis://cache/1', cast=Env.cache_url_config),
+    'lock': config('DJANGO_CACHE_LOCK', default='redis://cache/2', cast=Env.cache_url_config),
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
