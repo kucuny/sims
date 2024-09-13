@@ -1,4 +1,29 @@
-include:
-  - path:
-      - deployment/local/compose.postgresql.yaml
-      - deployment/local/compose.redis.yaml
+volumes:
+  db-data: {}
+  cache-data: {}
+
+services:
+  db:
+    image: postgres:16.4-alpine
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_USER: sims
+      POSTGRES_PASSWORD: sims
+  cache:
+    image: redis:6.2-alpine
+    volumes:
+      - cache-data:/data:rw
+  app:
+    build:
+      context: .
+      dockerfile: deployment/local/Dockerfile
+    entrypoint: deployment/local/entrypoint.sh
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app:rw
+    depends_on:
+      - db
+      - cache
