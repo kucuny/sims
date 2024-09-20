@@ -58,14 +58,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
-    'default': config('DJANGO_DATABASE_DEFAULT', default='psql://sims:sims@db/sims', cast=Env.db_url_config),
+    'default': config('DJANGO_DATABASE_DEFAULT', default='psql://sims:sims@db:5432/sims', cast=Env.db_url_config),
 }
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CACHES = {
-    'default': config('DJANGO_CACHE_DEFAULT', default='redis://cache/0', cast=Env.cache_url_config),
-    'auth': config('DJANGO_CACHE_AUTH', default='redis://cache/1', cast=Env.cache_url_config),
-    'lock': config('DJANGO_CACHE_LOCK', default='redis://cache/2', cast=Env.cache_url_config),
+    'default': config('DJANGO_CACHE_DEFAULT', default='redis://cache:6379/0', cast=Env.cache_url_config),
+    'auth': config('DJANGO_CACHE_AUTH', default='redis://cache:6379/1', cast=Env.cache_url_config),
+    'lock': config('DJANGO_CACHE_LOCK', default='redis://cache:6379/2', cast=Env.cache_url_config),
 }
 
 AUTH_PASSWORD_VALIDATORS = [
